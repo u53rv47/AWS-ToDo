@@ -1,0 +1,121 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  SAM Template for ToDo
+
+Parameters:
+  TableName:
+    Type: String
+    Default: ToDo
+
+  HashKeyElementName:
+    Type: String
+    Default: id
+    Description: Hash Key Name
+
+  HashKeyElementType:
+    Type: String
+    Default: S
+    Description: Hash Key Type
+
+Globals:
+  Function:
+    Runtime: python3.9
+    Handler: app.lambda_handler
+    Environment:
+      Variables:
+        DYNAMODB_TABLE: !Ref TableName
+
+Resources:
+  AWSLambdaBasicExecutionRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service:
+                - "lambda.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+        - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+
+  ToDoTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Ref TableName
+      AttributeDefinitions:
+        - AttributeName: !Ref HashKeyElementName
+          AttributeType: !Ref HashKeyElementType
+      KeySchema:
+        - AttributeName: !Ref HashKeyElementName
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+  createToDo:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: createToDo
+      CodeUri: src/createToDo
+      Events:
+        ToDoEvent:
+          Type: Api
+          Properties:
+            Path: /create-todo
+            Method: post
+      Role: !GetAtt AWSLambdaBasicExecutionRole.Arn
+
+  deleteToDo:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: deleteToDo
+      CodeUri: src/deleteToDo
+      Events:
+        ToDoEvent:
+          Type: Api
+          Properties:
+            Path: /delete-todo
+            Method: delete
+      Role: !GetAtt AWSLambdaBasicExecutionRole.Arn
+
+  getToDo:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getToDo
+      CodeUri: src/getToDo
+      Events:
+        ToDoEvent:
+          Type: Api
+          Properties:
+            Path: /get-todo
+            Method: get
+      Role: !GetAtt AWSLambdaBasicExecutionRole.Arn
+  listToDo:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: listToDo
+      CodeUri: src/listToDo
+      Events:
+        ToDoEvent:
+          Type: Api
+          Properties:
+            Path: /list-todo
+            Method: get
+      Role: !GetAtt AWSLambdaBasicExecutionRole.Arn
+  updateToDo:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: updateToDo
+      CodeUri: src/updateToDo
+      Events:
+        ToDoEvent:
+          Type: Api
+          Properties:
+            Path: /update-todo
+            Method: patch
+      Role: !GetAtt AWSLambdaBasicExecutionRole.Arn

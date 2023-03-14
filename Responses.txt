@@ -1,0 +1,53 @@
+Output
+=====
+
+
+Input
+======
+{'body': '{"id": "0", "text": "This is my first Python ToDo."}',
+ 'headers': {'Accept': '*/*',
+             'Accept-Encoding': 'gzip, deflate',
+             'CloudFront-Forwarded-Proto': 'https',
+             'CloudFront-Is-Desktop-Viewer': 'true',
+             'CloudFront-Is-Mobile-Viewer': 'false',
+             'CloudFront-Is-SmartTV-Viewer': 'false',
+             'CloudFront-Is-Tablet-Viewer': 'false',
+             'CloudFront-Viewer-ASN': '45609',
+             'CloudFront-Viewer-Country': 'IN',
+             'Content-Type': 'application/json',
+             'Host': 'da0ou7ll4g.execute-api.ap-south-1.amazonaws.com',
+             'User-Agent': 'python-requests/2.28.2',
+             'Via': '1.1 cf39bc06039b7959b48621e5dfb952ca.cloudfront.net '
+                    '(CloudFront)',
+             'X-Amz-Cf-Id': 'YJxHZSSjq17a6D1PURTptuu57dWTEsY9_Zq-gYcFsmCdvfpaTbccjg==',
+             'X-Amzn-Trace-Id': 'Root=1-64104a4f-351e26991db02591726d782a',
+             'X-Forwarded-For': '106.208.151.71, 130.176.188.116',
+             'X-Forwarded-Port': '443',
+             'X-Forwarded-Proto': 'https'},
+ 'httpMethod': 'POST',
+ 'isBase64Encoded': False,
+ 'multiValueHeaders': {'Accept': ['*/*'],
+                       'Accept-Encoding': ['gzip, deflate'],
+                       'CloudFront-Forwarded-Proto': ['https'],
+                       'CloudFront-Is-Desktop-Viewer': ['true'],
+                       'CloudFront-Is-Mobile-Viewer': ['false'],
+                       'CloudFront-Is-SmartTV-Viewer': ['false'],
+                       'CloudFront-Is-Tablet-Viewer': ['false'],
+                       'CloudFront-Viewer-ASN': ['45609'],
+                       'CloudFront-Viewer-Country': ['IN'],
+                       'Content-Type': ['application/json'],
+                       'Host': ['da0ou7ll4g.execute-api.ap-south-1.amazonaws.com'],
+                       'User-Agent': ['python-requests/2.28.2'],
+                       'Via': ['1.1 '
+                               'cf39bc06039b7959b48621e5dfb952ca.cloudfront.net '
+                               '(CloudFront)'],
+                       'X-Amz-Cf-Id': ['YJxHZSSjq17a6D1PURTptuu57dWTEsY9_Zq-gYcFsmCdvfpaTbccjg=='],
+                       'X-Amzn-Trace-Id': ['Root=1-64104a4f-351e26991db02591726d782a'],
+                       'X-Forwarded-For': ['106.208.151.71, 130.176.188.116'],
+                       'X-Forwarded-Port': ['443'],
+                       'X-Forwarded-Proto': ['https']},
+ 'multiValueQueryStringParameters': None,
+                    'stage': 'Prod'},
+ 'resource': '/create-todo',
+ 'stageVariables': None
+ }
